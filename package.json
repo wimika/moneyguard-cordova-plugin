@@ -1,0 +1,20 @@
+{
+  "name": "Moneyguard",
+  "version": "0.0.1",
+  "description": "Moneyguard ionic implementation",
+  "cordova": {
+    "id": "com.wimika.ionic.moneyguard",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
