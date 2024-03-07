@@ -1,36 +1,54 @@
-# moneyguard-cordova-plugin
 
-# TypeScript Models Description
 
-1. **TypingProfileMatchingResult:**  
-   Represents the result of matching a typing profile, containing information such as enrollment status, match status, confidence level, and any associated message.
+## MoneyGuard SDK For Xamarin Sample
 
-2. **StartingCharactersLength:**  
-   Defines the length of starting characters used in a particular context, typically used for password fragment lengths.
+MoneyGuard SDK For Ionic allows financial institutions to embed [Moneyguard](https://wimika.ng/moneyguard/) into
+their Ionic applications. 
 
-3. **SessionExpiredException:**  
-   Custom exception class representing a session expiration error.
+## Getting Started
 
-4. **RiskStatus:**  
-   Enumeration representing different risk statuses, including "unknown", "safe", "warn", and "unsafe".
+1. Obtain a partner Id from Wimika RMS Technologies
 
-5. **DebitTransaction:**  
-   Represents a debit transaction, containing information such as source account number, amount, memo, destination bank, and destination account number.
+2. Implement a REST API endpoint that exposes [Wimika Partner Bank Service API](https://wimika.gitbook.io/wimika-partner-bank-api-documentation/), provide your service url to Wimika RMS Technologies
 
-6. **DebitTransactionCheckResult:**  
-   Result of checking a debit transaction, indicating success status, message, and associated risk status.
+3. Embed Wimika Moneyguard in your Android Application
 
-7. **Credential:**  
-   Represents user credentials, including username, password hash, password fragment length, hash algorithm, and domain.
+## Usage For Ionic
 
-8. **CredentialScanResult:**  
-   Result of scanning user credentials, containing a message and associated risk status.
+### 1) Add Cordova Plugin to Your Project
+- cordova plugin add com.wimika.ionic.moneyguard@0.0.1
 
-9. **IBasicSession:**  
-   Interface defining basic session properties and methods, including installation and session IDs, debit transaction and credential checks, typing profile recorder, and session expiration event handler.
 
-10. **ITypingProfileRecorder:**  
-    Interface defining methods for recording typing profiles, including capturing typing fragments, handling keyboard events, resetting profiles, and matching typing profiles.
+### 2) Initialize MoneyGuard 
 
-11. **HashAlgorithm:**  
-    Enumeration representing different hash algorithms, including "SHA1", "SHA256", "SHA384", and "SHA512".
+Initialize Moneyguard. An IBasicSession is an implementation of the methods that support the following Moneyguard
+functionality :
+ - Obtain an authorization token for MoneyGuard REST API service calls
+ - Credential Compromise Check
+ - Create a Typing Profile Recorder
+ - Preview a banking debit transaction before it is processed
+
+ ```typescript
+
+ ...
+import { Component } from '@angular/core';
+declare var cordova: any;
+
+const Moneyguard = cordova.plugins.Moneyguard;
+const partnerBankId = <partner-bank-id>; // Obtained from Wimika
+const sessionToken = <session-token>; // Session token that will be passed to Partner Bank REST Service to validate user session
+
+Moneyguard.Register(
+      partnerBankId,
+      sessionToken,
+      (sessionId: string) => {
+        // Use sessionId in REST API call using header "Authorization" : "Bearer <sessionId>"
+        console.log('Session ID:', sessionId);
+      },
+      (error: any) => {
+        console.error('Error initializing MoneyGuard:', error);
+      }
+    );
+ ...
+
+ ```
