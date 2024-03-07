@@ -61,7 +61,7 @@ public class Moneyguard extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         
         Log.d("MoneyguardPlugin", "Executing " + action + " action");
-        if (action.equals("registerGuard")) {
+        if (action.equals("Register")) {
             String partnerBankId = args.getString(0);
             String sessionToken = args.getString(1);
             IBasicSession session = registerGuard(partnerBankId, sessionToken);
