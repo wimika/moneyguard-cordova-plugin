@@ -20,6 +20,7 @@
         <source-file src="src/android/model/RecordRiskReq.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/Risk.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/Score.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/RiskResult.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/TypingProfileResult.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/CredentialScanResult.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/RiskStatus.java" target-dir="src/com/wimika/ionic" />
