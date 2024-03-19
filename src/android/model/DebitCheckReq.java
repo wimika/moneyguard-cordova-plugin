@@ -1,4 +1,4 @@
-package com.wimika.ionic.Moneyguard;
+package com.wimika.ionic;
 
 
 import com.google.gson.annotations.SerializedName;

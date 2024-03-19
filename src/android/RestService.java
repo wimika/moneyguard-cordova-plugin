@@ -1,4 +1,4 @@
-package com.wimika.ionic.Moneyguard;
+package com.wimika.ionic;
 
 
 import retrofit2.Retrofit;

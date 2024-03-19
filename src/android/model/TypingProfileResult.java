@@ -1,26 +1,26 @@
-package com.wimika.ionic.Moneyguard;
+package com.wimika.ionic;
 
 import com.google.gson.annotations.SerializedName;
 
 public class TypingProfileResult {
     @SerializedName("success")
     private boolean success;
-    
+
     @SerializedName("message")
     private String message;
-    
+
     @SerializedName("status")
     private int status;
-    
+
     @SerializedName("isEnrolledOnThisDevice")
     private boolean isEnrolledOnThisDevice;
-    
+
     @SerializedName("matched")
     private boolean matched;
-    
+
     @SerializedName("highConfidence")
     private boolean highConfidence;
-    
+
     @SerializedName("hasOtherEnrollments")
     private boolean hasOtherEnrollments;
 

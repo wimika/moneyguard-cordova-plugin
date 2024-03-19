@@ -1,4 +1,4 @@
-class SessionExpiredException extends Error {
+export class SessionExpiredException extends Error {
     constructor() {
         super("Session expired");
         // Set the prototype explicitly.

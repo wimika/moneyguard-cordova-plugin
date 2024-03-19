@@ -1,4 +1,4 @@
-class TypingProfileMatchingResult {
+export class TypingProfileMatchingResult {
     public IsEnrolledOnThisDevice: boolean;
     public Matched: boolean;
     public HighConfidence: boolean;

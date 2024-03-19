@@ -7,25 +7,27 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="Moneyguard">
-                <param name="android-package" value="com.wimika.ionic" />
+                <param name="android-package" value="com.wimika.ionic.Moneyguard" />
+                <param name="onload" value="true" />
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
         </config-file>
-        <source-file src="src/android/model/CredentialCheckReq.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/DebitCheckReq.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/DebitCheckResult.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/GenericResult.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/RecordRiskReq.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/Risk.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/Score.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/model/TypingProfileResult.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/RestService.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/ApiService.java" target-dir="src/com/wimika/ionic/Moneyguard" />
-        <source-file src="src/android/Moneyguard.java" target-dir="src/com/wimika/ionic/Moneyguard" />
+        <source-file src="src/android/model/CredentialCheckReq.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/DebitCheckReq.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/DebitCheckResult.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/GenericResult.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/RecordRiskReq.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/Risk.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/Score.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/TypingProfileResult.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/CredentialScanResult.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/RiskStatus.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/RestService.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/ApiService.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/SessionImpl.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/Moneyguard.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/libs/moneyguardcore.aar" target-dir="libs" />
         <source-file src="src/android/libs/moneyguard.aar" target-dir="libs" />
-        <source-file src="src/android/libs/retrofit-2.9.0.jar" target-dir="libs" />
-        <source-file src="src/android/libs/converter-gson-2.9.0.jar" target-dir="libs" />
     </platform>
 </plugin>

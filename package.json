@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Moneyguard ionic implementation",
   "cordova": {
-    "id": "com.wimika.ionic.moneyguard",
+    "id": "com.wimika.ionic",
     "platforms": [
       "android"
     ]

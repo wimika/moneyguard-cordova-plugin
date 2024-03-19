@@ -1,4 +1,6 @@
-class CredentialScanResult {
+import { RiskStatus } from "./RiskStatus";
+
+export class CredentialScanResult {
     public Message: string;
     public Status: RiskStatus;
 
