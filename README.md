@@ -37,7 +37,7 @@ const Moneyguard = cordova.plugins.Moneyguard;
 const partnerBankId = <partner-bank-id>; // Obtained from Wimika
 const sessionToken = <session-token>; // Session token that will be passed to Partner Bank REST Service to validate user session
 
-Moneyguard.Register(
+Moneyguard.registerGuard(
    partnerBankId,
    sessionToken,
    (session: any) => {
