@@ -1,4 +1,4 @@
-enum HashAlgorithm {
+export declare enum HashAlgorithm {
     SHA1 = 0,
     SHA256 = 1,
     SHA384 = 2,

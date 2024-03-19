@@ -16,7 +16,7 @@ their Ionic applications.
 ## Usage For Ionic
 
 ### 1) Add Cordova Plugin to Your Project
-- cordova plugin add com.wimika.ionic.moneyguard@0.0.1
+- cordova plugin add moneyguard-ionic@0.0.1
 
 
 ### 2) Initialize MoneyGuard 
@@ -39,16 +39,16 @@ const partnerBankId = <partner-bank-id>; // Obtained from Wimika
 const sessionToken = <session-token>; // Session token that will be passed to Partner Bank REST Service to validate user session
 
 Moneyguard.Register(
-      partnerBankId,
-      sessionToken,
-      (sessionId: string) => {
-        // Use sessionId in REST API call using header "Authorization" : "Bearer <sessionId>"
-        console.log('Session ID:', sessionId);
-      },
-      (error: any) => {
+    partnerBankId,
+    sessionToken,
+    (session: any) => { 
+        console.log('Session Object:', session);
+    },
+    (error: any) => {
         console.error('Error initializing MoneyGuard:', error);
-      }
-    );
+    }
+);
+
  ...
 
  ```

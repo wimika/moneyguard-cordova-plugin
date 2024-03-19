@@ -1,4 +1,7 @@
-class MoneyGuardCredential {
+import { HashAlgorithm } from "./HashAlgorithm";
+import { StartingCharactersLength } from "./StartingCharactersLength";
+
+export class MoneyGuardCredential {
     public Username: string;
     public PasswordStartingCharactersHash: string;
     public PasswordFragmentLength: StartingCharactersLength;

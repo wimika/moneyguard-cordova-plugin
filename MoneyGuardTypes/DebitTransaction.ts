@@ -1,4 +1,4 @@
-class DebitTransaction {
+export class DebitTransaction {
     public SourceAccountNumber: string;
     public Amount: number;
     public Memo: string;

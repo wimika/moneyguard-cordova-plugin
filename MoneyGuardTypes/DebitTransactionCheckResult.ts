@@ -1,4 +1,6 @@
-class DebitTransactionCheckResult {
+import { RiskStatus } from "./RiskStatus";
+
+export class DebitTransactionCheckResult {
     public Success: boolean;
     public Message: string;
     public Status: RiskStatus;
