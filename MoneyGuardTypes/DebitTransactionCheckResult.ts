@@ -1,13 +1,5 @@
-import { RiskStatus } from "./RiskStatus";
+import { RiskResult } from "./RiskResult";
 
-export class DebitTransactionCheckResult {
-    public Success: boolean;
-    public Message: string;
-    public Status: RiskStatus;
-
-    constructor(Success: boolean, Message: string, Status: RiskStatus) {
-        this.Success = Success;
-        this.Message = Message;
-        this.Status = Status;
-    }
+export class DebitTransactionCheckResult extends RiskResult {
+    // You can add additional properties or methods specific to DebitTransactionCheckResult here
 }
