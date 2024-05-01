@@ -7,4 +7,7 @@ import retrofit2.http.POST;
 public interface ApiService {
   @POST("credential/check")
   Call<GenericResult> checkCredentials(@Body CredentialCheckReq request);
+
+  @POST("auth/emails/signin")
+  Call<GenericResult<SessionResponse>> getSession(@Body LoginReq request);
 }
