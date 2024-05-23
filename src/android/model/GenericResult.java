@@ -3,45 +3,47 @@ package com.wimika.ionic;
 import com.google.gson.annotations.SerializedName;
 
 
-public class GenericResult {
-    @SerializedName("success")
-    private boolean success;
+public class GenericResult<T> {
 
-    @SerializedName("message")
-    private String message;
+    private T data;
 
-    @SerializedName("status")
-    private int status;
+    @SerializedName("isError")
+    private boolean IsError;
+
+    @SerializedName("errorMessage")
+    private String ErrorMessage;
+
 
     // Constructor
-    public GenericResult(boolean success, String message, int status) {
-        this.success = success;
-        this.message = message;
-        this.status = status;
+    public GenericResult(T data, boolean IsError, String ErrorMessage) {
+        this.data = data;
+        this.IsError = IsError;
+        this.ErrorMessage = ErrorMessage;
     }
 
     // Getters and Setters
-    public boolean isSuccess() {
-        return success;
+    public boolean isError() {
+        return IsError;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setError(boolean error) {
+        this.IsError = error;
     }
 
-    public String getMessage() {
-        return message;
+    public String getErrorMessage() {
+        return ErrorMessage;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setErrorMessage(String errorMessage) {
+        this.ErrorMessage = errorMessage;
     }
 
-    public int getStatus() {
-        return status;
+    public T getData() {
+      return data;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setData(T data) {
+      this.data = data;
     }
+
 }

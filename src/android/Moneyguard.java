@@ -9,10 +9,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.wimika.moneyguard.risk.SpecificRisk;
+import com.wimika.moneyguard.Client;
+import com.wimika.moneyguardcore.BasicClient;
+import com.wimika.moneyguardcore.MoneyGuardSdk;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Moneyguard extends CordovaPlugin {
@@ -21,6 +28,7 @@ public class Moneyguard extends CordovaPlugin {
   private RestService restService;
   private static final String TAG = "MoneyGuardPlugin";
 
+  private BasicClient client;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -100,6 +108,27 @@ public class Moneyguard extends CordovaPlugin {
           callbackContext.success(re);
           return true;
 
+        }else if(action.equals("getSession")){
+          String username = args.getString(0);
+          String password = args.getString(1);
+          Activity activity = this.cordova.getActivity();
+          Call<GenericResult<SessionResponse>> call = this.restService.getApiService().getSession(new LoginReq(username, password));
+          call.enqueue(new Callback<GenericResult<SessionResponse>>() {
+            @Override
+            public void onResponse(Call<GenericResult<SessionResponse>> call, Response<GenericResult<SessionResponse>> response) {
+              if (response.isSuccessful()) {
+                String sessionId= response.body().getData().getSessionId();
+                MoneyGuardSdk.register(activity, "101", sessionId , client);
+                Log.d("kk", "skksks");
+              } else {
+                int statusCode = response.code();
+              }
+            }
+
+            @Override
+            public void onFailure(Call<GenericResult<SessionResponse>> call, Throwable t) {
+            }
+          });
         }
         return false;
     }
@@ -107,7 +136,6 @@ public class Moneyguard extends CordovaPlugin {
     private JSONObject sessionToJson(SessionImpl session) throws JSONException {
         JSONObject sessionJson = new JSONObject();
         sessionJson.put("SessionId", session.getSessionId());
-        // Convert other session properties to JSON as needed
         return sessionJson;
     }
 

@@ -23,3 +23,8 @@ exports.checkDebitTransaction = function (checkTransactionReq, success, error) {
 exports.getRiskProfile = function (success, error) {
     exec(success, error, 'Moneyguard', 'getRiskProfile');
 };
+
+
+exports.getSession = function (username, password, success, error) {
+    exec(success, error, 'Moneyguard', 'getSession', [username, password]);
+};

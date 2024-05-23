@@ -13,6 +13,8 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
         </config-file>
+        <source-file src="src/android/model/SessionResponse.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/LoginReq.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/CredentialCheckReq.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/DebitCheckReq.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/DebitCheckResult.java" target-dir="src/com/wimika/ionic" />
