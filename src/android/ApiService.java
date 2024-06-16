@@ -9,5 +9,8 @@ public interface ApiService {
   Call<GenericResult> checkCredentials(@Body CredentialCheckReq request);
 
   @POST("auth/emails/signin")
-  Call<GenericResult<SessionResponse>> getSession(@Body LoginReq request);
+  Call<GenericResult<SessionResponse>> getBankSession(@Body LoginReq request);
+
+  @POST("api/v1/session")
+  Call<MoneyGuardSessionResponse> getMoneyGuardSession(@Body SessionRequest request);
 }

@@ -26,7 +26,12 @@
         <source-file src="src/android/model/TypingProfileResult.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/CredentialScanResult.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/model/RiskStatus.java" target-dir="src/com/wimika/ionic" />
-        <source-file src="src/android/RestService.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/SessionRequest.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/BankRestService.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/MoneyGuardRestService.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/MoneyGuardSessionResponse.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/UserDetails.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/model/BaseResponse.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/ApiService.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/SessionImpl.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/Moneyguard.java" target-dir="src/com/wimika/ionic" />

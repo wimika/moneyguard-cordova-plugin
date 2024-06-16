@@ -9,11 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
-public class RestService {
+public class BankRestService {
   private static final String BASE_URL = "https://bankservice.azurewebsites.net/";
   private ApiService apiService;
 
-  public RestService() {
+  public BankRestService() {
 
     HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
       @Override
