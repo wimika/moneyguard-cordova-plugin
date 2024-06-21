@@ -34,6 +34,7 @@
         <source-file src="src/android/model/BaseResponse.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/ApiService.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/SessionImpl.java" target-dir="src/com/wimika/ionic" />
+        <source-file src="src/android/BasicClientImpl.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/Moneyguard.java" target-dir="src/com/wimika/ionic" />
         <source-file src="src/android/libs/moneyguardcore.aar" target-dir="libs" />
         <source-file src="src/android/libs/moneyguard.aar" target-dir="libs" />

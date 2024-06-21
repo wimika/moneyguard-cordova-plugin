@@ -5,8 +5,8 @@ exports.registerGuard = function (arg0, arg1, success, error) {
 };
 
 
-exports.checkCredential = function (checkCredentialReq, success, error) {
-    exec(success, error, 'Moneyguard', 'checkCredential', [checkCredentialReq]);
+exports.checkCredential = function (username, password, success, error) {
+    exec(success, error, 'Moneyguard', 'checkCredential', [username, password]);
 };
 
 
