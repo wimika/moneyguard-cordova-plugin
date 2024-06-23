@@ -11,6 +11,11 @@ import java.util.concurrent.CountDownLatch;
 
 public class BasicClientImpl implements BasicClient {
     private final ConcurrentHashMap<Long, CredentialScanResult> scanResults = new ConcurrentHashMap<>();
+
+    private final ConcurrentHashMap<Long, TransactionCheckResult> scanDebitResults = new ConcurrentHashMap<>();
+
+    private final ConcurrentHashMap<Long, TypingProfileMatchingResult> typingProfileResults = new ConcurrentHashMap<>();
+
     private final ConcurrentHashMap<Long, CountDownLatch> scanLatches = new ConcurrentHashMap<>();
 
     @Override
@@ -34,12 +39,20 @@ public class BasicClientImpl implements BasicClient {
 
     @Override
     public void onTransactionCheckCompleted(long id, TransactionCheckResult result) {
-        // Handle transaction check completion
+      scanDebitResults.put(id, result);
+      CountDownLatch latch = scanLatches.get(id);
+      if (latch != null) {
+        latch.countDown();
+      }
     }
 
     @Override
     public void onTypingProfileMatchResult(long id, TypingProfileMatchingResult result) {
-        // Handle typing profile match result
+      typingProfileResults.put(id, result);
+      CountDownLatch latch = scanLatches.get(id);
+      if (latch != null) {
+        latch.countDown();
+      }
     }
 
     public CredentialScanResult getScanResult(long id) throws InterruptedException {
@@ -48,4 +61,19 @@ public class BasicClientImpl implements BasicClient {
         latch.await(); // Wait until the result is available
         return scanResults.get(id);
     }
+
+    public TransactionCheckResult getDebitScanResult(long id) throws InterruptedException {
+      CountDownLatch latch = new CountDownLatch(1);
+      scanLatches.put(id, latch);
+      latch.await(); // Wait until the result is available
+      return scanDebitResults.get(id);
+    }
+
+    public TypingProfileMatchingResult getTypingResult(long id) throws InterruptedException {
+      CountDownLatch latch = new CountDownLatch(1);
+      scanLatches.put(id, latch);
+      latch.await(); // Wait until the result is available
+      return typingProfileResults.get(id);
+    }
+
 }

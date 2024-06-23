@@ -1,8 +1,5 @@
 package com.wimika.ionic;
 
-import static com.wimika.moneyguardcore.RiskStatus.RISK_STATUS_SAFE;
-import static com.wimika.moneyguardcore.RiskStatus.RISK_STATUS_UNSAFE;
-import static com.wimika.moneyguardcore.RiskStatus.RISK_STATUS_WARN;
 
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
@@ -19,6 +16,11 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.wimika.moneyguardcore.BasicClient;
 import com.wimika.moneyguardcore.Credential;
+//import com.wimika.moneyguard.impl.SessionImpl;
+
+
+import com.wimika.moneyguardcore.TransactionCheckResult;
+import com.wimika.moneyguardcore.TransactionInfo;
 import com.wimika.moneyguardcore.impl.BasicSessionImpl;
 import com.wimika.moneyguardcore.RiskStatus;
 import com.wimika.moneyguardcore.CredentialScanResult;
@@ -135,22 +137,64 @@ public class Moneyguard extends CordovaPlugin {
           return true;
 
         }else if(action.equals("checkDebitTransaction")){
-
+          BasicClientImpl client = new BasicClientImpl();
           String message = args.getString(0);
           JSONObject jsonCredentialCheckReq = args.getJSONObject(0);
           DebitCheckReq debitCheckReq = gson.fromJson(jsonCredentialCheckReq.toString(), DebitCheckReq.class);
+          basicSession = new BasicSessionImpl(activity, installationId, sessionId, client);
 
-          //Todo: make api call here
-          DebitCheckResult result = new DebitCheckResult(
-            true,
-            "transaction check success",
-            RiskStatus.RISK_STATUS_UNKNOWN.ordinal(),
-            null
-          );
-          String json = gson.toJson(result);
-          JSONObject re = new JSONObject(json);
-          callbackContext.success(re);
-          return true;
+
+          try{
+            Class<?> clazz = Class.forName("com.wimika.moneyguardcore.TransactionInfo");
+            Object credential = clazz.getDeclaredConstructor().newInstance();
+
+            Field field = credential.getClass().getDeclaredField("amount");
+            field.setAccessible(true);
+            field.set(credential, debitCheckReq.getAmount());
+
+            Field field1 = credential.getClass().getDeclaredField("destinationBank");
+            field1.setAccessible(true);
+            field1.set(credential, debitCheckReq.getDestinationBank());
+
+            Field field2 = credential.getClass().getDeclaredField("destinationAccountNumber");
+            field2.setAccessible(true);
+            field2.set(credential, debitCheckReq.getDestinationAccountNumber());
+
+            Field field3 = credential.getClass().getDeclaredField("memo");
+            field3.setAccessible(true);
+            field3.set(credential, debitCheckReq.getMemo());
+
+            Long scanId = basicSession.checkTransaction((TransactionInfo) credential);
+            TransactionCheckResult result = client.getDebitScanResult(scanId);
+
+            String statusMsg = "";
+            switch (result.getStatus())
+            {
+              case RISK_STATUS_SAFE:
+                statusMsg = "Safe";
+              case RISK_STATUS_WARN:
+                statusMsg = "Warn";
+              case RISK_STATUS_UNSAFE:
+                statusMsg = "Unsafe";
+            }
+
+            String msg = "Debit transaction status is "  + statusMsg;
+            callbackContext.success(msg);
+            return true;
+
+          } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+          } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+          } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+          } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+          } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+          } catch (Exception e){
+            throw new RuntimeException(e);
+          }
 
         }else if(action.equals("checkTypingProfile")){
 
@@ -159,17 +203,10 @@ public class Moneyguard extends CordovaPlugin {
           return true;
 
         }else if(action.equals("getRiskProfile")){
-
-          //Todo: make api call here
-//          RiskResult result = new RiskResult(
-//            true,
-//            "risk check success",
-//            RiskStatus.RISK_STATUS_UNKNOWN,
-//            null
-//          );
-//          String json = gson.toJson(result);
-//          JSONObject re = new JSONObject(json);
-//          callbackContext.success(re);
+          BasicClientImpl client = new BasicClientImpl();
+          basicSession = new BasicSessionImpl(activity, installationId, sessionId, client);
+          String msg = "Risk profile is -> Unsafe";
+          callbackContext.success(msg);
           return true;
 
         }else if(action.equals("getSession")){
